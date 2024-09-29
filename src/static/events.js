@@ -1,3 +1,5 @@
+import { showAlert } from "./utils.js";
+
 export function createEventNode(event) {
     let startTime = moment.parseZone(event.start, "YYYYMMDDTHHmmssZ");
     let endTime = moment.parseZone(event.end, "YYYYMMDDTHHmmssZ");
@@ -75,7 +77,7 @@ export function createEventNode(event) {
                     ${event.type}
                 </small>
                 <br>
-                <span><i class="bi bi-calendar-event me-1"></i>${event.summary}</span>
+                <span class="event-name"><i class="bi bi-calendar-event me-1"></i>${event.summary}</span>
                 <br>
                 ${event.location ? `<span><i class="bi bi-geo-alt me-1"></i>${event.location}</span>` : ''}
             </div>
@@ -156,39 +158,55 @@ export function createEventNode(event) {
 }
 
 export function validateEvents() {
-    $(".event-card").each((i) => {
-        console.log($(this));
-        const startInput = $(this).find(".start-input");
-        const endInput = $(this).find(".end-input");
-        const untilInput = $(this).find(".until-input");
+    let isValid = true;
+    $(".event-card").each(function(i) {
+        if (!isValid)
+            return;
 
-        console.log(startInput);
+        const card = $(this);
+        
+        const startInput = card.find(".start-input");
+        const endInput = card.find(".end-input");
+        const untilInput = card.find(".until-input");
 
         const startValue = startInput.val();
         const endValue = endInput.val();
         const untilValue = untilInput.val();
 
-        // Log the values for debugging
-        console.log(i + ": Start: " + startValue);
-        console.log(i + ": End: " + endValue);
-        console.log(i + ": Until: " + untilValue);
+        const eventName = card.find(".event-name").text();
+
+        // Validation logic
+        if (!startValue && !endValue) {
+            showAlert(`Event ${eventName}: Start or end times must be provided.`, "danger");
+            isValid = false;
+        } else {
+            const startTime = moment(startValue);
+            const endTime = moment(endValue);
+
+            if (!startTime.isValid() || !endTime.isValid()) {
+                showAlert(`Event ${eventName}: Please enter valid start and end times.`, "danger");
+                isValid = false;
+            } else if (endTime.isBefore(startTime)) {
+                showAlert(`Event ${eventName}: End time must be after start time.`, "danger");
+
+                isValid = false;
+            }
+
+            if (untilValue) {
+                const untilTime = moment(untilValue);
+                if (!untilTime.isValid() || untilTime.isBefore(startTime)) {
+                    showAlert(`Event ${eventName}: "Until" time must be after the start time.`, "danger");
+                    isValid = false; // Mark as invalid
+                }
+            }
+        }
     });
 
-    return true;
+    return isValid;
 }
 
 export function parseEvents() {
     $(".event-card").each((i) => {
-        console.log(this);
-        const start_input = $(this).find(".start-input");
-        const end_input = $(this).find(".end-input");
-        const until_input = $(this).find(".until-input");
-
-        const select_days = $(this).find(".select-days");
-        const select_reminder = $(this).find(".select-reminder");
-
-        console.log(start_input.val());
-        console.log(end_input.val());
     });
 
 }

@@ -112,7 +112,7 @@ func processChatRequest(part openai.ChatMessagePart) (ResponseFormat, error) {
 
 	// Call the OpenAI API
 	req := openai.ChatCompletionRequest {
-		Model: openai.GPT4oMini,
+		Model: openai.GPT4o20240806,
 		Messages: []openai.ChatCompletionMessage {
 			{
 				Role: openai.ChatMessageRoleSystem,

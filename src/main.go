@@ -21,7 +21,9 @@ var (
 
 func main() {
 	// Start the file processing routine
-	go processRequests()
+	for i := range(3) {
+		go processRequests(i)
+	}
 
 	// Initialize the OpenAI client
 	client, ctx = initClient()
@@ -61,9 +63,9 @@ func sendAcknowledgementResponse(w http.ResponseWriter, jobId string) {
 	w.Write([]byte(`{"jobId": "` + jobId + `", "queueLength": ` + strconv.Itoa(queueLength) + `}`))
 }
 
-func processRequests() {
+func processRequests(id int) {
 	for req := range queue {
-		log.Printf("Processing request\n")
+		log.Printf("Worker %d processing request ID %s\n", id, req.jobId)
 
 		var part openai.ChatMessagePart
 

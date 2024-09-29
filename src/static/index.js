@@ -80,6 +80,24 @@ $(document).ready(function() {
                 return;
             }
 
+            $("#spinner").removeClass("d-none");
+
+            var formData = new FormData();
+            if (activeInput === 'text') {
+                formData.append('text', schedule);
+                await processTextSchedule(formData);
+            } else {
+                formData.append('file', currentFile);
+                await processImageSchedule(formData);
+            }
+
+            if (jobId) {
+                pollForResult(jobId);
+            }
+        });
+        $('#reparse').on('click', async function() {
+            $("#respinner").removeClass("d-none");
+
             var formData = new FormData();
             if (activeInput === 'text') {
                 formData.append('text', schedule);
@@ -137,6 +155,8 @@ $(document).ready(function() {
 
             if (result.status !== 'pending') {
                 clearInterval(interval);
+                $("#spinner").addClass("d-none");
+                $("#respinner").addClass("d-none");
                 handleResult(result);
             }
         }, 1000);
