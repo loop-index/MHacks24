@@ -38,7 +38,8 @@ $(document).ready(function() {
     }
 
     function setupDropArea() {
-        $('#file-drop').on('click', function() {
+        $('#drop-text').on('click', function(e) {
+            e.stopPropagation();
             $('#schedule-image').click();
         });
 
@@ -73,9 +74,11 @@ $(document).ready(function() {
                 }
                 clearJob();
                 $("#result").empty();
+                $("#reparse").addClass("d-none");
+                return;
             }
 
-            const schedule = $(`#schedule-${activeInput}`).val();
+            let schedule = $(`#schedule-${activeInput}`).val();
             if (!validateInput(schedule)) {
                 return;
             }
@@ -96,6 +99,11 @@ $(document).ready(function() {
             }
         });
         $('#reparse').on('click', async function() {
+            let schedule = $(`#schedule-${activeInput}`).val();
+            if (!validateInput(schedule)) {
+                return;
+            }
+
             $("#respinner").removeClass("d-none");
 
             var formData = new FormData();
@@ -157,6 +165,7 @@ $(document).ready(function() {
                 clearInterval(interval);
                 $("#spinner").addClass("d-none");
                 $("#respinner").addClass("d-none");
+                $("#reparse").removeClass("d-none");
                 handleResult(result);
             }
         }, 1000);

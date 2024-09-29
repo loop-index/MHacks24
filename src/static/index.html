@@ -38,10 +38,10 @@
                 <br>
                 <textarea id="schedule-text" class="form-control" rows="10" cols="50"
                     style="max-height: 50vh;"></textarea>
-                <div class="border border-2 rounded p-2 d-none d-flex justify-content-center align-items-center"
+                <div class="border border-2 rounded p-2 d-none d-flex justify-content-center align-items-center bg-muted"
                     id="file-drop">
                     <input type="file" class="d-none" id="schedule-image" accept="image/*">
-                    <p class="text-center" id="drop-text">Drag and drop an image here or click to upload</p>
+                    <p class="text-center pe-auto" id="drop-text">Drag and drop an image here or click to upload</p>
                 </div>
                 <br>
                 <button id="parse" class="btn btn-primary">
@@ -51,7 +51,7 @@
                         </div>
                     </span>
                 </button>
-                <button id="reparse" class="btn btn-success">
+                <button id="reparse" class="btn btn-success d-none">
                     <span>Reparse 
                         <div class="spinner-border-sm d-none" id="re-spinner" role="status">
                             <span class="visually-hidden">Loading...</span>
