@@ -5,7 +5,9 @@ body {
 }
 
 .background {
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     background-image: url(https://t3.ftcdn.net/jpg/03/44/52/84/360_F_344528412_kCNXLrHETwxS0ztSTcD6N4Z09FZGpOdQ.jpg);

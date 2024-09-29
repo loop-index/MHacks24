@@ -1,5 +1,5 @@
-import { showAlert, showConfirmModal, showExportModal } from './utils.js';
-import { createEventNode, validateEvents } from './events.js'
+import { download, showAlert, showConfirmModal, showExportModal } from './utils.js';
+import { createEventNode, parseEvents, validateEvents } from './events.js'
 
 $(document).ready(function() {
     var activeInput = 'text';
@@ -195,8 +195,10 @@ $(document).ready(function() {
             if (!validateEvents())
                 return;
 
-            if (! (await showExportModal())) {
-                // Export
+            let [modalResponse, courseName] = await showExportModal();
+            if (modalResponse) {
+                let fileContents = parseEvents(courseName);
+                download(`${courseName.replace(" ", "-")}`, fileContents);
             }
         });
     }

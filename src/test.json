@@ -14,26 +14,6 @@
             "until": "20241204T141500Z"
         },
         {
-            "summary": "Midterm Exam 1",
-            "type": "exam",
-            "start": "20240925T124000Z",
-            "end": "20240925T141500Z",
-            "location": "Psychology Building 118",
-            "freq": "",
-            "byday": [],
-            "until": ""
-        },
-        {
-            "summary": "Midterm Exam 2",
-            "type": "exam",
-            "start": "20241104T124000Z",
-            "end": "20241104T141500Z",
-            "location": "Psychology Building 118",
-            "freq": "",
-            "byday": [],
-            "until": ""
-        },
-        {
             "summary": "Final Exam",
             "type": "exam",
             "start": "20241210T124500Z",
@@ -48,76 +28,6 @@
             "type": "deadline",
             "start": "20240906",
             "end": "",
-            "location": "",
-            "freq": "",
-            "byday": [],
-            "until": ""
-        },
-        {
-            "summary": "Online Experiment Deadline - Donders decisions, Sternberg search",
-            "type": "deadline",
-            "start": "20240913",
-            "end": "",
-            "location": "",
-            "freq": "",
-            "byday": [],
-            "until": ""
-        },
-        {
-            "summary": "Online Experiment Deadline - Tilt adaptation",
-            "type": "deadline",
-            "start": "20240920",
-            "end": "",
-            "location": "",
-            "freq": "",
-            "byday": [],
-            "until": ""
-        },
-        {
-            "summary": "Online Experiment Deadline",
-            "type": "deadline",
-            "start": "20240925",
-            "end": "",
-            "location": "",
-            "freq": "",
-            "byday": [],
-            "until": ""
-        },
-        {
-            "summary": "Online Experiment Deadline - Blind spot",
-            "type": "deadline",
-            "start": "20241018",
-            "end": "",
-            "location": "",
-            "freq": "",
-            "byday": [],
-            "until": ""
-        },
-        {
-            "summary": "Online Experiment Deadline - Stroop effect",
-            "type": "deadline",
-            "start": "20241025",
-            "end": "",
-            "location": "",
-            "freq": "",
-            "byday": [],
-            "until": ""
-        },
-        {
-            "summary": "Online Experiment Deadline",
-            "type": "deadline",
-            "start": "20241202",
-            "end": "",
-            "location": "",
-            "freq": "",
-            "byday": [],
-            "until": ""
-        },
-        {
-            "summary": "Subject Pool Research Participation Deadline",
-            "type": "deadline",
-            "start": "20241206",
-            "end": "20241206T170000Z",
             "location": "",
             "freq": "",
             "byday": [],

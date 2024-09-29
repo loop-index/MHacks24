@@ -49,13 +49,27 @@ export function showExportModal() {
             if ($("#validation-course").val() == "")
                 return;
 
+            let courseName = $("#validation-course").text();
             $('#export-modal').modal('hide');
-            resolve(true);
+            resolve([true, courseName]);
         });
 
         $('#export-modal').on('hidden.bs.modal', function () {
-            resolve(false);
+            resolve([false, ""]);
         });
     });
+}
+
+export function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/calendar;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);
 }
 

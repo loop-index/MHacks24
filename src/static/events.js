@@ -79,7 +79,7 @@ export function createEventNode(event) {
                 <br>
                 <span class="event-name"><i class="bi bi-calendar-event me-1"></i>${event.summary}</span>
                 <br>
-                ${event.location ? `<span><i class="bi bi-geo-alt me-1"></i>${event.location}</span>` : ''}
+                ${event.location ? `<span class="event-location"><i class="bi bi-geo-alt me-1"></i>${event.location}</span>` : ''}
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
@@ -205,8 +205,49 @@ export function validateEvents() {
     return isValid;
 }
 
-export function parseEvents() {
-    $(".event-card").each((i) => {
-    });
+export function parseEvents(courseName) {
+    var result = `BEGIN:VCALENDAR\nMETHOD:PUBLISH\nVERSION:2.0\n`;
 
+    $(".event-card").each(function(i) {
+        const card = $(this);
+        
+        const startInput = card.find(".start-input");
+        const endInput = card.find(".end-input");
+        const untilInput = card.find(".until-input");
+
+        const startValue = startInput.val();
+        const endValue = endInput.val();
+        const untilValue = untilInput.val();
+
+        const startTime = moment(startValue);
+        const endTime = moment(endValue);
+        const untilTime = moment(untilValue);
+
+        const eventName = card.find(".event-name").text();
+
+        result += "BEGIN:VEVENT\n";
+        result += `SUMMARY:[${courseName}] - ${eventName}\n`;
+        result += "PRIORITY:0\n";
+
+        result += `DTSTART:${startValue ? startTime.format("YYYYMMDDTHHmmssZ") : ""}\n`;
+        result += `DTEND:${endValue ? endTime.format("YYYYMMDDTHHmmssZ") : ""}\n`;
+
+        if (false) {
+            result += "RRULE:FREQ=WEEKLY;";
+
+            const selectDays = $(card).find(".select-days").val();
+            result += `BYDAY=${selectDays.join(",")};`;
+
+            result += `UNTIL=${endValue ? untilTime.format("YYYYMMDDTHHmmssZ") : ""}`;
+
+            result += "WKST=SU\n";
+        }
+        const eventLocation = card.find(".event-location").text();
+        result += `LOCATION:${eventLocation}\n`;
+
+        result += "END:VEVENT\n";
+    });
+    result += "END:VCALENDAR\n\n";
+
+    return result;
 }

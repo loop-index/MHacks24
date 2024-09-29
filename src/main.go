@@ -29,11 +29,11 @@ func main() {
 	client, ctx = initClient()
 
 	// Testing only
-	testSetup(false)
+	testSetup(true)
 
 	// Start the server
-	http.HandleFunc("/parse/image", imageHandler)
-	http.HandleFunc("/parse/text", textHandler)
+	// http.HandleFunc("/parse/image", imageHandler)
+	// http.HandleFunc("/parse/text", textHandler)
 	http.HandleFunc("/result/{jobId}", resultHandler)
 	
 	// Serve the static files
