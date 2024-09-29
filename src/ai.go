@@ -90,7 +90,7 @@ func processChatRequest(part openai.ChatMessagePart) (ResponseFormat, error) {
 
 	//// AI PROMPTS ////
 
-	aiInstruction := `You are a tool used to parse a syllabus into a course calendar. The user is going to supply a text or image of the syllabus. Export an iCalendar-like list of course events, such as meetings, homeworks, quizzes, exams, etc. 
+	aiInstruction := `You are a tool used to parse a syllabus into a course calendar. The user is going to supply a text or image of the syllabus. Extract course events such as meetings, homeworks, quizzes, exams, etc. 
 	
 	Rules:
 	- Group similar events with similar times into one repeating event. If an event repeats, include optional frequency, days to repeat, and repeat until (until would be the last occurrence).
